@@ -1,0 +1,24 @@
+{
+	"name": "Observerator",
+	"description": "An observer...",
+	"version": "1.0",
+	"manifest_version": 3,
+	"background": {
+		"persistent": false,
+    "page": "background.html"
+  },
+	"content_scripts": [
+		{
+			"matches": [
+				"<all_urls>"
+			],
+			"js": ["observerator.js"],
+			"run_at": "document_end"
+		}
+	],
+	"web_accessible_resources": [{
+		"resources": ["scripts.js","extra-life-notification.wav"],
+		"matches": ["<all_urls>"]
+	}],
+	"permissions": ["storage"]
+}
