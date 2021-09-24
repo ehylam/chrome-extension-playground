@@ -1,6 +1,7 @@
 
 let interval;
 let maxThreshold = 500;
+let currentValue = 0;
 
 
 const handleLights = async () => {
@@ -56,6 +57,12 @@ interval = setInterval(() => {
 			clearInterval(interval);
 
 			handleLights();
+		}
+
+		if (currentValue !== targetValue) {
+			currentValue = targetValue;
+		} else {
+			window.location.reload();
 		}
 	}
 }, 10000);
