@@ -2,6 +2,7 @@
 let interval;
 let maxThreshold = 500;
 let currentValue = 0;
+let targetValue = '';
 
 
 const handleLights = async () => {
@@ -49,21 +50,22 @@ const setLightState = async (light) => {
 interval = setInterval(() => {
 	const target = document.querySelector('#quote-header-info div:nth-child(3) span:first-child');
 	if(target !== null || target !== undefined) {
-		const targetValue = target.innerHTML;
+		targetValue = target.innerHTML;
 		console.log(targetValue);
 
 		// if targetValue exceeds maxThreshold
 		if (targetValue > maxThreshold) {
 			clearInterval(interval);
-
 			handleLights();
 		}
 
-		if (currentValue !== targetValue) {
-			currentValue = targetValue;
-		} else {
-			window.location.reload();
-		}
 	}
 }, 10000);
 
+setInterval(() => {
+	if (currentValue !== targetValue) {
+		currentValue = targetValue;
+	} else {
+		window.location.reload();
+	}
+},35000);
